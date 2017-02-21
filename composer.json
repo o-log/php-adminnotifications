@@ -1,0 +1,18 @@
+    {
+      "name": "o-log/php-adminnotifications",
+      "description": "Admin notifications.",
+      "require": {
+        "o-log/php-auth": "2.*",
+        "o-log/php-router": "1.*",
+        "o-log/php-model": "6.*",
+        "o-log/php-crud": "4.*",
+        "o-log/php-layouts": "1.*"
+      },
+      "autoload" : {
+        "psr-0" : {
+          "Config" : "",
+          "OLOG" : "",
+          "AdminNotificationsDemo" : ""
+        }
+      }
+    }
