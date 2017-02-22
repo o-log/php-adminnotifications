@@ -13,5 +13,6 @@ class AdminNotificationRegistrRoutes
 {
     static public function registr(){
         \OLOG\Router::processAction(AdminNotificationsListAction::class, 0);
+        \OLOG\Router::processAction(AdminNotificationEditAction::class, 0);
     }
 }
