@@ -25,7 +25,7 @@ class AdminNotificationsListAction extends AdminNotificationsAdminActionsBasePro
     public function action()
     {
 
-        AdminLayoutSelector::render('');
+        AdminLayoutSelector::render('P_', $this);
     }
 
 }
