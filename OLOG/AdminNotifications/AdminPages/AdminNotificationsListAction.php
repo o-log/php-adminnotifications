@@ -2,8 +2,6 @@
 
 namespace OLOG\AdminNotifications\AdminPages;
 
-
-use AdminNotificationsDemo\Pages\Admin\AdminActionBase;
 use OLOG\InterfaceAction;
 use OLOG\Layouts\AdminLayoutSelector;
 use OLOG\Layouts\InterfacePageTitle;
