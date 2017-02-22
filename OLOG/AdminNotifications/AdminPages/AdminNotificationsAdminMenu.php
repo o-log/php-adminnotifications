@@ -13,7 +13,7 @@ class AdminNotificationsAdminMenu implements InterfaceMenu
         $menu_arr = [];
 
         if (Auth::currentUserHasAnyOfPermissions([Permissions::PERMISSION_ADMINNOTIFICATIONS_MANAGE])) {
-            $menu_arr[] = new MenuItem('Авторизация соц. сети', '', [
+            $menu_arr[] = new MenuItem('Уведомления', '', [
                 new MenuItem('O_o', '', [], 'glyphicon glyphicon-user')
             ], 'glyphicon glyphicon-log-in');
         }
