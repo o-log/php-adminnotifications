@@ -18,7 +18,7 @@ class AdminNotificationsAdminMenu implements InterfaceMenu
 //            ], 'glyphicon glyphicon-log-in');
 
             $menu_arr[] =
-                new MenuItem((new AdminNotificationsListAction())->pageTitle(),(new AdminNotificationsListAction())->url(), [], 'glyphicon glyphicon-user');
+                new MenuItem((new AdminNotificationsListAction())->pageTitle(),(new AdminNotificationsListAction())->url(), [], 'glyphicon glyphicon-send');
 
         }
 
