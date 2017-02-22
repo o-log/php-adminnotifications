@@ -5,10 +5,26 @@ namespace OLOG\AdminNotifications;
 class AdminNotificationConfig
 {
     const ADMIN_NOTIFICATIONS_DB_NAME='db_admin_notifications';
-    const ADMIN_NOTIFICATIONS_KEYVALUE_KEY_EMAIL_LIST='ADMIN_NOTIFICATIONS_EMAIL_LIST';
 
     static protected $admin_actions_base_classname;
     static protected $email_from;
+    static protected $admin_notifications_keyvalue_key_email_list;
+
+    /**
+     * @return mixed
+     */
+    public static function getAdminNotificationsKeyvalueKeyEmailList()
+    {
+        return self::$admin_notifications_keyvalue_key_email_list;
+    }
+
+    /**
+     * @param mixed $admin_notifications_keyvalue_key_email_list
+     */
+    public static function setAdminNotificationsKeyvalueKeyEmailList($admin_notifications_keyvalue_key_email_list)
+    {
+        self::$admin_notifications_keyvalue_key_email_list = $admin_notifications_keyvalue_key_email_list;
+    }
 
     /**
      * @return mixed

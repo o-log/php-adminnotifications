@@ -116,8 +116,9 @@ class AdminNotification implements
 
     public function afterSave()
     {
-        $email_list = KeyValue::getOptionalValueForKey( AdminNotificationConfig::ADMIN_NOTIFICATIONS_KEYVALUE_KEY_EMAIL_LIST, []);
-        Assert::assert(count($email_list)>0,'Пустой список рассылки');
+        $email_list_str = KeyValue::getOptionalValueForKey( AdminNotificationConfig::getAdminNotificationsKeyvalueKeyEmailList());
+        Assert::assert($email_list_str,'Пустой список рассылки');
+        $email_list = explode(',',$email_list_str);
         foreach ($email_list as $email){
             self::sendMail($email, $this->getMessage());
         }
