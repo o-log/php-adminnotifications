@@ -36,7 +36,7 @@ class AdminNotificationsListAction extends AdminNotificationsAdminActionsBasePro
         );
 
         $html = \OLOG\CRUD\CRUDTable::html(
-            \OLOG\Auth\User::class,
+            AdminNotification::class,
             CRUDForm::html(
                 new AdminNotification(),
                 [
@@ -60,7 +60,7 @@ class AdminNotificationsListAction extends AdminNotificationsAdminActionsBasePro
                 //new CRUDTableFilterLikeInline('description_1287318', '', 'description', 'Комментарий'),
                 //new \OLOG\Auth\CRUDTableFilterOwnerInvisible()
             ],
-            'login',
+            'id',
             '1',
             \OLOG\CRUD\CRUDTable::FILTERS_POSITION_INLINE
         );

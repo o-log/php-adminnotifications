@@ -30,7 +30,7 @@ class AdminNotification implements
     const _MESSAGE = 'message';
     protected $message;
     const _STATUS = 'status';
-    protected $status;
+    protected $status = 0;
     protected $id;
 
     static public function getIdsArrForStatusByCreatedAtDesc($value, $offset = 0, $page_size = 30){
