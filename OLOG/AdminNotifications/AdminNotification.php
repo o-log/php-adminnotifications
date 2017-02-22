@@ -57,7 +57,7 @@ class AdminNotification implements
         $this->status = $value;
     }
     public function getVocabularyId(){
-        return $this->getStatus();
+        return 1;
     }
 
 
