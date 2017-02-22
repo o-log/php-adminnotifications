@@ -3,6 +3,13 @@
 namespace OLOG\AdminNotifications\AdminPages;
 
 
+use OLOG\AdminNotifications\AdminNotification;
+use OLOG\AdminNotifications\Permissions;
+use OLOG\Auth\Operator;
+use OLOG\CRUD\CRUDForm;
+use OLOG\CRUD\CRUDFormRow;
+use OLOG\CRUD\CRUDFormWidgetTextarea;
+use OLOG\Exits;
 use OLOG\InterfaceAction;
 use OLOG\Layouts\AdminLayoutSelector;
 use OLOG\Layouts\InterfacePageTitle;
@@ -24,8 +31,41 @@ class AdminNotificationsListAction extends AdminNotificationsAdminActionsBasePro
 
     public function action()
     {
+        Exits::exit403If(
+            !Operator::currentOperatorHasAnyOfPermissions([Permissions::PERMISSION_ADMINNOTIFICATIONS_MANAGE])
+        );
 
-        AdminLayoutSelector::render('P_', $this);
+        $html = \OLOG\CRUD\CRUDTable::html(
+            \OLOG\Auth\User::class,
+            CRUDForm::html(
+                new AdminNotification(),
+                [
+                    new CRUDFormRow('Сообщение', new CRUDFormWidgetTextarea( AdminNotification::_MESSAGE))
+                ],
+                $this->url()
+            ),
+            [
+                new \OLOG\CRUD\CRUDTableColumn(
+                    'Сообщение',
+                    new \OLOG\CRUD\CRUDTableWidgetText('{this->' . AdminNotification::_MESSAGE .'}')
+                ),
+                new \OLOG\CRUD\CRUDTableColumn(
+                    'Статус',
+                    new \OLOG\CRUD\CRUDTableWidgetText('{this->' . AdminNotification::_STATUS .'}')
+                ),
+
+            ],
+            [
+                //new CRUDTableFilterLikeInline('login_1287318', '', 'login', 'Логин'),
+                //new CRUDTableFilterLikeInline('description_1287318', '', 'description', 'Комментарий'),
+                //new \OLOG\Auth\CRUDTableFilterOwnerInvisible()
+            ],
+            'login',
+            '1',
+            \OLOG\CRUD\CRUDTable::FILTERS_POSITION_INLINE
+        );
+
+        AdminLayoutSelector::render($html, $this);
     }
 
 }
