@@ -9,6 +9,7 @@ use OLOG\Auth\Operator;
 use OLOG\CRUD\CRUDForm;
 use OLOG\CRUD\CRUDFormRow;
 use OLOG\CRUD\CRUDFormWidgetTextarea;
+use OLOG\CRUD\CRUDTableWidgetOptionsEditor;
 use OLOG\Exits;
 use OLOG\InterfaceAction;
 use OLOG\Layouts\AdminLayoutSelector;
@@ -47,11 +48,11 @@ class AdminNotificationsListAction extends AdminNotificationsAdminActionsBasePro
             [
                 new \OLOG\CRUD\CRUDTableColumn(
                     'Сообщение',
-                    new \OLOG\CRUD\CRUDTableWidgetTextWithLink('{this->' . AdminNotification::_MESSAGE .'}', (new AdminNotificationEditAction('{this->id}'))->url())
+                    new \OLOG\CRUD\CRUDTableWidgetText('{this->' . AdminNotification::_MESSAGE .'}')
                 ),
                 new \OLOG\CRUD\CRUDTableColumn(
                     'Статус',
-                    new \OLOG\CRUD\CRUDTableWidgetText('{this->' . AdminNotification::_STATUS .'}')
+                    new CRUDTableWidgetOptionsEditor( AdminNotification::_STATUS ,[1=>'прочитано'], '1qqq')
                 ),
 
             ],
@@ -61,7 +62,7 @@ class AdminNotificationsListAction extends AdminNotificationsAdminActionsBasePro
                 //new \OLOG\Auth\CRUDTableFilterOwnerInvisible()
             ],
             'id',
-            '1',
+            '1qqq',
             \OLOG\CRUD\CRUDTable::FILTERS_POSITION_INLINE
         );
 
