@@ -56,6 +56,10 @@ class AdminNotification implements
     public function setStatus($value){
         $this->status = $value;
     }
+    public function getVocabularyId(){
+        return $this->getStatus();
+    }
+
 
 
 
@@ -66,6 +70,7 @@ class AdminNotification implements
     public function setMessage($value){
         $this->message = $value;
     }
+
 
 
     protected $created_at_ts; // initialized by constructor
