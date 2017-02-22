@@ -25,7 +25,7 @@ class AdminNotificationEditAction extends AdminNotificationsAdminActionsBaseProx
         return '/admin/notifications/' . $this->notification_id;
     }
 
-    public function urlMsk(){
+    static public function urlMask(){
         return '/admin/notifications/(\d+)';
     }
 
