@@ -2,11 +2,12 @@
 
 namespace OLOG\AdminNotifications\AdminPages;
 
+
 use OLOG\InterfaceAction;
 use OLOG\Layouts\AdminLayoutSelector;
 use OLOG\Layouts\InterfacePageTitle;
 
-class AdminNotificationsListAction extends AdminActionBase implements
+class AdminNotificationsListAction extends AdminNotificationsAdminActionsBaseProxy implements
     InterfaceAction,
     InterfacePageTitle
 
