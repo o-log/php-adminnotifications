@@ -47,7 +47,7 @@ class AdminNotificationsListAction extends AdminNotificationsAdminActionsBasePro
             [
                 new \OLOG\CRUD\CRUDTableColumn(
                     'Сообщение',
-                    new \OLOG\CRUD\CRUDTableWidgetText('{this->' . AdminNotification::_MESSAGE .'}')
+                    new \OLOG\CRUD\CRUDTableWidgetTextWithLink('{this->' . AdminNotification::_MESSAGE .'}', (new AdminNotificationEditAction('{this->id}'))->url())
                 ),
                 new \OLOG\CRUD\CRUDTableColumn(
                     'Статус',
