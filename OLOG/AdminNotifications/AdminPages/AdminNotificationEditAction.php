@@ -22,7 +22,7 @@ class AdminNotificationEditAction extends AdminNotificationsAdminActionsBaseProx
     private $notification_id;
     public function url()
     {
-        return '/admin/notifications/(\d+)';
+        return '/admin/notifications/' . $this->notification_id;
     }
 
     public function urlMsk(){
