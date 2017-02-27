@@ -124,7 +124,6 @@ class AdminNotification implements
     {
         $this->removeFromFactoryCache();
         $email_list_str = KeyValue::getOptionalValueForKey( AdminNotificationConfig::getAdminNotificationsKeyvalueKeyEmailList());
-        Assert::assert($email_list_str,'Пустой список рассылки');
         $email_list = explode(',',$email_list_str);
         foreach ($email_list as $email){
             if(count(Email::getIdsArrForEmailToAndNotificationIdByCreatedAtDesc($email, $this->getId()))){
