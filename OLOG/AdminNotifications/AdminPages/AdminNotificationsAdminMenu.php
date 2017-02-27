@@ -1,6 +1,7 @@
 <?php
 
 namespace OLOG\AdminNotifications\AdminPages;
+use OLOG\AdminNotifications\AdminNotification;
 use OLOG\AdminNotifications\Permissions;
 use OLOG\Auth\Auth;
 use OLOG\Layouts\InterfaceMenu;
@@ -17,8 +18,10 @@ class AdminNotificationsAdminMenu implements InterfaceMenu
 //                new MenuItem('O_o', '', [], 'glyphicon glyphicon-user')
 //            ], 'glyphicon glyphicon-log-in');
 
+            $notify_count = count(AdminNotification::getIdsArrForStatusByCreatedAtDesc(0));
+
             $menu_arr[] =
-                new MenuItem((new AdminNotificationsListAction())->pageTitle(),(new AdminNotificationsListAction())->url(), [], 'glyphicon glyphicon-send');
+                new MenuItem((new AdminNotificationsListAction())->pageTitle() . '('.$notify_count.')',(new AdminNotificationsListAction())->url(), [], 'glyphicon glyphicon-send');
 
         }
 
