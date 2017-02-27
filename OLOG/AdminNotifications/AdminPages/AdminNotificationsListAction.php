@@ -52,7 +52,7 @@ class AdminNotificationsListAction extends AdminNotificationsAdminActionsBasePro
                 ),
                 new \OLOG\CRUD\CRUDTableColumn(
                     'Статус',
-                    new CRUDTableWidgetOptionsEditor( AdminNotification::_STATUS ,[0=>'непрочитанно',1=>'прочитанно'], '1qqq')
+                    new CRUDTableWidgetOptionsEditor( AdminNotification::_STATUS ,[0=>'не прочитано',1=>'прочитано'], '1qqq')
                 ),
 
             ],
