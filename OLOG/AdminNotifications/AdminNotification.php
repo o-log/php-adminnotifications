@@ -1,7 +1,6 @@
 <?php
 namespace OLOG\AdminNotifications;
 
-use OLOG\Assert;
 use OLOG\EmailSender\Email;
 use OLOG\KeyValue\KeyValue;
 use OLOG\Model\ActiveRecordTrait;
@@ -32,7 +31,19 @@ class AdminNotification implements
     protected $message;
     const _STATUS = 'status';
     protected $status = 0;
+    const _EMAILS_IS_SENT = 'emails_is_sent';
+    protected $emails_is_sent = 0;
     protected $id;
+
+    public function getEmailsIsSent(){
+        return $this->emails_is_sent;
+    }
+
+    public function setEmailsIsSent($value){
+        $this->emails_is_sent = $value;
+    }
+
+
 
     static public function getIdsArrForStatusByCreatedAtDesc($value, $offset = 0, $page_size = 30){
         if (is_null($value)) {
@@ -125,18 +136,23 @@ class AdminNotification implements
         $this->removeFromFactoryCache();
         $email_list_str = KeyValue::getOptionalValueForKey( AdminNotificationConfig::getAdminNotificationsKeyvalueKeyEmailList());
         $email_list = explode(',',$email_list_str);
-        foreach ($email_list as $email){
-            if(count(Email::getIdsArrForEmailToAndNotificationIdByCreatedAtDesc($email, $this->getId()))){
-                continue;
+        if(!$this->getEmailsIsSent()){
+            foreach ($email_list as $email){
+                if(count(Email::getIdsArrForEmailToAndNotificationIdByCreatedAtDesc($email, $this->getId()))){
+                    continue;
+                }
+
+                $email_obj = new Email();
+                $email_obj->setSubject('Уведомление');
+                $email_obj->setNotificationId($this->getId());
+                $email_obj->setBody($this->getMessage());
+                $email_obj->setEmailTo($email);
+                $email_obj->setEmailFrom( AdminNotificationConfig::getEmailFrom() );
+                $email_obj->save();
             }
 
-            $email_obj = new Email();
-            $email_obj->setSubject('Уведомление');
-            $email_obj->setNotificationId($this->getId());
-            $email_obj->setBody($this->getMessage());
-            $email_obj->setEmailTo($email);
-            $email_obj->setEmailFrom( AdminNotificationConfig::getEmailFrom() );
-            $email_obj->save();
+            $this->setEmailsIsSent(1);
+            $this->save();
         }
     }
 

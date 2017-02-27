@@ -10,4 +10,5 @@ array(
 'alter table olog_emailsender_email add column notification_id int   not null    /* rand704530 */;',
 'alter table olog_emailsender_email add column status int   not null default 0   /* rand350858 */;',
 'insert into olog_auth_permission (title) values ("PERMISSION_ADMINNOTIFICATIONS_MANAGE") /* rand3508582 */;',
+'alter table olog_adminnotifications_adminnotification add column emails_is_sent int   not null   default 0  /* rand931616 */;',
 )
