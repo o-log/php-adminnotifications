@@ -7,7 +7,7 @@ require_once '../vendor/autoload.php';
 \OLOG\KeyValue\RegisterRoutes::registerRoutes();
 \OLOG\AdminNotifications\AdminPages\AdminNotificationRegistrRoutes::registr();
 
-//\OLOG\Redirects::redirect( (new \OLOG\AdminNotifications\AdminPages\AdminNotificationsListAction())->url() );
+\OLOG\Redirects::redirect( (new \OLOG\AdminNotifications\AdminPages\AdminNotificationsListAction())->url() );
 
 
 
