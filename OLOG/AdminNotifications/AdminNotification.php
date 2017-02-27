@@ -133,6 +133,7 @@ class AdminNotification implements
 
             $email_obj = new Email();
             $email_obj->setSubject('Уведомление');
+            $email_obj->setNotificationId($this->getId());
             $email_obj->setBody($this->getMessage());
             $email_obj->setEmailTo($email);
             $email_obj->setEmailFrom( AdminNotificationConfig::getEmailFrom() );
