@@ -32,7 +32,28 @@ class Email implements
     protected $email_to;
     const _EMAIL_FROM = 'email_from';
     protected $email_from;
+    const _NOTIFICATION_ID = 'notification_id';
+    protected $notification_id;
     protected $id;
+
+    public function getNotificationId(){
+        return $this->notification_id;
+    }
+
+    public function setNotificationId($value){
+        $this->notification_id = $value;
+    }
+
+
+
+    static public function getIdsArrForEmailToAndNotificationIdByCreatedAtDesc($email, $notification_id){
+        return \OLOG\DB\DBWrapper::readColumn(
+            self::DB_ID,
+            'select id from ' . self::DB_TABLE_NAME . ' where ' . self::_EMAIL_TO . ' = ? AND ' . self::_NOTIFICATION_ID . '=? order by created_at_ts ',
+            [$email, $notification_id]
+        );
+    }
+
 
     public function getEmailFrom(){
         return $this->email_from;
