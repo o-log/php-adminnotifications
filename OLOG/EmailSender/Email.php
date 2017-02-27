@@ -121,21 +121,20 @@ class Email implements
         $this->created_at_ts = $timestamp;
     }
 
-    public static function sendMail($email, $message){
-        $subject='Уведомление';
+    public function sendMail(){
         $headers  = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-        $headers .= 'From: ' . AdminNotificationConfig::getEmailFrom() . "\r\n" .
+        $headers .= 'From: ' . $this->getEmailFrom() . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
         $message = '
         <html>
             <head>
-                <title>' . $subject . '</title>
+                <title>' . $this->getSubject() . '</title>
             </head>
             <body>
-                <p> ' . $message .  '</p>
+                <p> ' . $this->getBody() .  '</p>
             </body>
         </html>';
-        mail($email, $subject, $message, $headers);
+        mail($this->getEmailTo(), $this->getSubject(), $message, $headers);
     }
 }

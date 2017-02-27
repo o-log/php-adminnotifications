@@ -128,6 +128,7 @@ class AdminNotification implements
         $email_list = explode(',',$email_list_str);
         foreach ($email_list as $email){
             $email_obj = new Email();
+            $email_obj->setSubject('Уведомление');
             $email_obj->setBody($this->getMessage());
             $email_obj->setEmailTo($email);
             $email_obj->setEmailFrom( AdminNotificationConfig::getEmailFrom() );
