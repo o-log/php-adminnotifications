@@ -21,6 +21,9 @@ class Email implements
 
     const DB_ID = 'db_admin_notifications';
     const DB_TABLE_NAME = 'olog_emailsender_email';
+    const STATUS_WAIT = 0;
+    const STATUS_SENT = 1;
+    const STATUS_FAIL = 2;
 
     const _ID = 'id';
     const _CREATED_AT_TS = 'created_at_ts';
@@ -34,7 +37,29 @@ class Email implements
     protected $email_from;
     const _NOTIFICATION_ID = 'notification_id';
     protected $notification_id;
+    const _STATUS = 'status';
+    protected $status=self::STATUS_WAIT;
     protected $id;
+
+    public function getStatus(){
+        return $this->status;
+    }
+
+    public function setStatus($value){
+        $this->status = $value;
+    }
+
+    static public function getAllIdsArrByStatusCreatedAtDesc($status){
+        $ids_arr = \OLOG\DB\DBWrapper::readColumn(
+            self::DB_ID,
+            'select ' . self::_ID . ' from ' . self::DB_TABLE_NAME . ' WHERE ' . self::_STATUS . '=? order by ' . self::_CREATED_AT_TS,
+            [$status]
+        );
+        return $ids_arr;
+    }
+
+
+
 
     public function getNotificationId(){
         return $this->notification_id;
