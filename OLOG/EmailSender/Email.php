@@ -181,6 +181,6 @@ class Email implements
                 <p> ' . $this->getBody() .  '</p>
             </body>
         </html>';
-        mail($this->getEmailTo(), $this->getSubject(), $message, $headers);
+        return mail($this->getEmailTo(), $this->getSubject(), $message, $headers);
     }
 }
