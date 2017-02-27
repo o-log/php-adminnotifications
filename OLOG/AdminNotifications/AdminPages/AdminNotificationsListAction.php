@@ -22,6 +22,7 @@ class AdminNotificationsListAction extends AdminNotificationsAdminActionsBasePro
 {
     public function url()
     {
+
             return '/admin/notifications/list';
     }
 
@@ -32,9 +33,11 @@ class AdminNotificationsListAction extends AdminNotificationsAdminActionsBasePro
 
     public function action()
     {
+
         Exits::exit403If(
             !Operator::currentOperatorHasAnyOfPermissions([Permissions::PERMISSION_ADMINNOTIFICATIONS_MANAGE])
         );
+
 
         $html = \OLOG\CRUD\CRUDTable::html(
             AdminNotification::class,

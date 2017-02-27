@@ -1,7 +1,14 @@
 <?php
 require_once '../vendor/autoload.php';
 
+\AdminNotificationsDemo\Config\ConfigAdminNotificationsDemo::init();
 
-//\OLOG\Router::processAction(\DEMOEmailAuth\Pages\MainPageAction::class, 0); //Pages\MainPageAction::class, 0);
+\OLOG\Auth\RegisterRoutes::registerRoutes();
+\OLOG\KeyValue\RegisterRoutes::registerRoutes();
+\OLOG\AdminNotifications\AdminPages\AdminNotificationRegistrRoutes::registr();
+
+//\OLOG\Redirects::redirect( (new \OLOG\AdminNotifications\AdminPages\AdminNotificationsListAction())->url() );
+
+
 
 

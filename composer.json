@@ -5,6 +5,10 @@
         {
           "type": "git",
           "url": "https://github.com/o-log/php-keyvalue"
+        },
+        {
+          "type": "git",
+          "url": "https://github.com/o-log/php-adminlte"
         }
       ],
       "require": {
@@ -13,7 +17,8 @@
         "o-log/php-model": "6.*",
         "o-log/php-crud": "4.*",
         "o-log/php-layouts": "1.*",
-        "o-log/php-keyvalue": "dev-master"
+        "o-log/php-keyvalue": "dev-master",
+        "o-log/php-adminlte": "dev-master"
       },
       "autoload" : {
         "psr-0" : {
