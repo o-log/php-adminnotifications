@@ -2,6 +2,7 @@
 namespace OLOG\AdminNotifications;
 
 use OLOG\Assert;
+use OLOG\EmailSender\Email;
 use OLOG\KeyValue\KeyValue;
 use OLOG\Model\ActiveRecordTrait;
 use OLOG\Model\FactoryTrait;
@@ -126,25 +127,12 @@ class AdminNotification implements
         Assert::assert($email_list_str,'Пустой список рассылки');
         $email_list = explode(',',$email_list_str);
         foreach ($email_list as $email){
-            self::sendMail($email, $this->getMessage());
+            $email_obj = new Email();
+            $email_obj->setBody($this->getMessage());
+            $email_obj->setEmailTo($email);
+            $email_obj->setEmailFrom( AdminNotificationConfig::getEmailFrom() );
+            $email_obj->save();
         }
     }
 
-    public static function sendMail($email, $message){
-        $subject='Уведомление';
-        $headers  = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-        $headers .= 'From: ' . AdminNotificationConfig::getEmailFrom() . "\r\n" .
-            'X-Mailer: PHP/' . phpversion();
-        $message = '
-        <html>
-            <head>
-                <title>' . $subject . '</title>
-            </head>
-            <body>
-                <p> ' . $message .  '</p>
-            </body>
-        </html>';
-        mail($email, $subject, $message, $headers);
-    }
 }
