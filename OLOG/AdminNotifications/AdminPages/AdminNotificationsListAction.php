@@ -50,6 +50,10 @@ class AdminNotificationsListAction extends AdminNotificationsAdminActionsBasePro
             ),
             [
                 new \OLOG\CRUD\CRUDTableColumn(
+                    'Создание',
+                    new \OLOG\CRUD\CRUDTableWidgetTimestamp('{this->' . AdminNotification::_CREATED_AT_TS .'}')
+                ),
+                new \OLOG\CRUD\CRUDTableColumn(
                     'Сообщение',
                     new \OLOG\CRUD\CRUDTableWidgetText('{this->' . AdminNotification::_MESSAGE .'}')
                 ),
@@ -64,7 +68,7 @@ class AdminNotificationsListAction extends AdminNotificationsAdminActionsBasePro
                 //new CRUDTableFilterLikeInline('description_1287318', '', 'description', 'Комментарий'),
                 //new \OLOG\Auth\CRUDTableFilterOwnerInvisible()
             ],
-            'id',
+            'id desc',
             '1qqq',
             \OLOG\CRUD\CRUDTable::FILTERS_POSITION_INLINE
         );
